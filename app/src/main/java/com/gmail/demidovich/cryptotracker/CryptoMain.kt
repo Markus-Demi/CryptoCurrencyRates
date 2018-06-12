@@ -3,21 +3,18 @@ package com.gmail.demidovich.cryptotracker
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import com.gmail.demidovich.cryptotracker.R.id.cryptoRecyclerView
 import com.gmail.demidovich.cryptotracker.adapter.CryptoAdapter
 import com.gmail.demidovich.cryptotracker.model.CryptoModel
 import com.gmail.demidovich.cryptotracker.utils.Constants
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.activity_crypto_main.*
 import okhttp3.*
 import java.io.IOException
 
 class CryptoMain : AppCompatActivity() {
 
     private lateinit var adapter: CryptoAdapter
-
-    private lateinit var cryptoRV: RecyclerView
 
     private val apiUrl = Constants.apiUrl
 
@@ -34,10 +31,11 @@ class CryptoMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crypto_main)
-        cryptoRV.findViewById<RecyclerView>(cryptoRecyclerView)
-        cryptoRV.layoutManager = LinearLayoutManager(this)
+
+        cryptoRecyclerView.layoutManager = LinearLayoutManager(this)
         adapter = CryptoAdapter()
-        cryptoRV.adapter = adapter
+        cryptoRecyclerView.adapter = adapter
+
         getCoins()
     }
 
